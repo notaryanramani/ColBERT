@@ -1,2 +1,2 @@
-ir-datasets [car]>=0.5
+ir-datasets[car]>=0.5
 tqdm
