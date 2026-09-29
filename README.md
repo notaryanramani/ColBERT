@@ -94,7 +94,7 @@ late-interaction MaxSim scoring (§3.3) can be applied at query time.
 | `scripts/build_faiss_index.py` | Builds the FAISS `IndexIVFPQ` structure over the flat embeddings for end-to-end retrieval (§3.6). Uses `nlist=2000`, `m=16`, `nbits=8`, `nprobe=10` per the paper. |
 | `scripts/verify_index.py` | Post-run validator. Confirms embedding dim, offsets length, offsets endpoint, average tokens per doc, and that sample doc IDs exist in the collection. |
 | `scripts/query_index.py` | Retrieval smoke test. Supports `--mode re-rank` (§3.5, exhaustive MaxSim) and `--mode e2e` (§3.6, FAISS filter + MaxSim refine). |
-| `Makefile` | One-shot pipeline runner: `make` executes the three steps above in sequence, stopping on the first failure. Change name of your virtual environment name accordingly. |
+| `Makefile` | One-shot pipeline runner: `make` executes the three steps above in sequence, stopping on the first failure. `Change name of your virtual environment name accordingly.` |
 | `indexes/` | Output directory for all Task 2 artifacts. |
 
 ## Output
