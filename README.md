@@ -77,20 +77,43 @@ when indexing and evaluating that dataset for TREC CAR.
 
 # Task 2 — Indexing Documents into a Vector DB
 
-Implements the paper's offline indexing (§3.4): the BERT document encoder `f_D`
-is run once over the collection, producing one `m`-dim embedding per token per
-document.
+Implements the paper's offline indexing (§3.4): the BERT document encoder
+`f_D` is run once over the collection, producing one `m`-dim embedding per
+token per document. Unlike a conventional vector DB that stores one vector
+per document, ColBERT stores a *bag of embeddings* per document, so that
+late-interaction MaxSim scoring (§3.3) can be applied at query time.
 
-**Produced artifacts:**
+## Files
 
-| File | Description |
+| File | Significance |
 |---|---|
-| `indexes/doc_embeddings.fp16.npy` | Flat `[total_tokens, 128]` fp16, L2-normalized |
-| `indexes/doc_offsets.npy`         | `int64 [num_docs + 1]` — slice bounds per doc |
-| `indexes/doc_ids.json`            | `list[str]` — doc IDs aligned with offsets |
-| `indexes/colbert_ivfpq.faiss`     | FAISS IVFPQ index (§3.6) |
+| `scripts/config.py` | All hyperparameters — encoder dims, batch sizes, storage dtype, FAISS params, paths. Single source of truth referenced by every other script. |
+| `scripts/colbert_model.py` | ColBERT model definition: BERT encoders for query and document (§3.2), linear projection `768 → 128` with L2 normalization, and the `maxsim()` late-interaction operator (§3.3, Eq. 3). |
+| `scripts/utils.py` | Indexing throughput helpers implementing the four §3.4 optimizations: `length_bucket()` (length-based bucketing), `pad_batch()` (per-batch max-length padding), `tokenize_parallel()` (multi-core tokenization with serial fallback for small slices), `prepend_specials()` (adds `[CLS] [D]` / `[CLS] [Q]`), `punct_ids()` (punctuation filter list). |
+| `scripts/index_documents.py` | **Task 2 main script.** Loads `collection.tsv`, encodes every document through the BERT document encoder, applies the punctuation filter, saves the flat embedding array + offsets + doc IDs to `indexes/`. |
+| `scripts/build_faiss_index.py` | Builds the FAISS `IndexIVFPQ` structure over the flat embeddings for end-to-end retrieval (§3.6). Uses `nlist=2000`, `m=16`, `nbits=8`, `nprobe=10` per the paper. |
+| `scripts/verify_index.py` | Post-run validator. Confirms embedding dim, offsets length, offsets endpoint, average tokens per doc, and that sample doc IDs exist in the collection. |
+| `scripts/query_index.py` | Retrieval smoke test. Supports `--mode re-rank` (§3.5, exhaustive MaxSim) and `--mode e2e` (§3.6, FAISS filter + MaxSim refine). |
+| `Makefile` | One-shot pipeline runner: `make` executes the three steps above in sequence, stopping on the first failure. |
+| `indexes/` | Output directory for all Task 2 artifacts. |
 
-**How to run?**
+## Output
+
+After a successful run, `indexes/` contains:
+
+| File | Shape / Type | Description |
+|---|---|---|
+| `doc_embeddings.fp16.npy` | `[total_tokens, 128]` fp16 | Flat array of all L2-normalized token embeddings across the collection. |
+| `doc_offsets.npy`         | `[num_docs + 1]` int64 | Doc `i` occupies `embeddings[offsets[i] : offsets[i+1]]`. |
+| `doc_ids.json`            | `list[str]` | MS MARCO doc IDs in the same order as offsets. |
+| `colbert_ivfpq.faiss`     | FAISS index | IVFPQ structure for approximate top-k search over all token embeddings (§3.6). |
+
+
+The trailing `OK` line confirms all validation checks passed.
+
+## How to run
+
+With the virtualenv activated and from the repo root:
 
 ```bash
 make
