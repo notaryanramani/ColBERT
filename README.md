@@ -1,7 +1,13 @@
 # ColBERT
 
 This repository contains source code for CS6101 Course Project Autumn '26.
+**Paper:** *ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT* (Khattab & Zaharia, SIGIR 2020)
+## 1. Objective
 
+Build a ColBERT-style vector index over the MS MARCO passage collection so that
+each document is represented as a **bag of contextualized token embeddings**
+(not a single vector), and so that late-interaction MaxSim scoring can be run
+against the index at query time.
 # Dataset Downloading and Loading Guide
 
 Install the dependencies:
@@ -68,3 +74,25 @@ python scripts/data.py trec-car
 
 Use `data/trec-car/collection.tsv`, `queries.test.tsv`, and `qrels.test.tsv`
 when indexing and evaluating that dataset for TREC CAR.
+
+# Task 2 — Indexing Documents into a Vector DB
+
+Implements the paper's offline indexing (§3.4): the BERT document encoder `f_D`
+is run once over the collection, producing one `m`-dim embedding per token per
+document.
+
+**Produced artifacts:**
+
+| File | Description |
+|---|---|
+| `indexes/doc_embeddings.fp16.npy` | Flat `[total_tokens, 128]` fp16, L2-normalized |
+| `indexes/doc_offsets.npy`         | `int64 [num_docs + 1]` — slice bounds per doc |
+| `indexes/doc_ids.json`            | `list[str]` — doc IDs aligned with offsets |
+| `indexes/colbert_ivfpq.faiss`     | FAISS IVFPQ index (§3.6) |
+
+**How to run?**
+
+```bash
+make
+
+
