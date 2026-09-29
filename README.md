@@ -95,9 +95,10 @@ late-interaction MaxSim scoring (§3.3) can be applied at query time.
 | `scripts/verify_index.py` | Post-run validator. Confirms embedding dim, offsets length, offsets endpoint, average tokens per doc, and that sample doc IDs exist in the collection. |
 | `scripts/query_index.py` | Retrieval smoke test. Supports `--mode re-rank` (§3.5, exhaustive MaxSim) and `--mode e2e` (§3.6, FAISS filter + MaxSim refine). |
 | `Makefile` | One-shot pipeline runner: `make` executes the three steps above in sequence, stopping on the first failure.|
+| `indexes/` | Output directory for all Task 2 artifacts. |
+
 > **Note:** Replace `venv` with your own virtual environment name
 > (e.g. `myenv`) in the activation commands above.
-| `indexes/` | Output directory for all Task 2 artifacts. |
 
 ## Output
 
