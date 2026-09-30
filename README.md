@@ -83,6 +83,10 @@ token per document. Unlike a conventional vector DB that stores one vector
 per document, ColBERT stores a *bag of embeddings* per document, so that
 late-interaction MaxSim scoring (§3.3) can be applied at query time.
 
+Install the dependencies by running below command
+```bash
+pip install numpy torch transformers faiss-cpu tqdm ir_datasets pandas safetensors
+```
 ## Files
 
 | File | Significance |
