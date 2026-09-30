@@ -30,14 +30,6 @@ def _save_index(vecs, offsets, kept_doc_ids):
         json.dump(kept_doc_ids, f)
     return arr.shape
 
-
-"""Indexing throughput helpers:
-  1. length-based bucketing
-  2. per-batch max length padding
-  3. multi-core CPU tokenization
-  4. (multi-GPU is handled in index_documents.py)
-"""
-
 from multiprocessing import Pool
 from scripts import config
 
