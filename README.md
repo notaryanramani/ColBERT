@@ -134,7 +134,7 @@ Run a single query to ensure that the FAISS index, embedding slices, and MaxSim 
 ```bash
 python -m scripts.query_index --query "what is the capital of france" --mode e2e --k 10
 ```
-### Fast Sanity Check (Subset of Queries)
+### Checking on a Subset of Queries
 
 Run evaluation on the first 50 queries to quickly check that `queries.dev.tsv` and `qrels.dev.tsv` parse correctly and that the MRR/Recall formulas compute without errors:
 
