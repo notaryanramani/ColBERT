@@ -125,4 +125,27 @@ With the virtualenv activated and from the repo root:
 ```bash
 make
 
+# Task 3
+## Instructions to Run
+### First Testing the Retrieval Pipeline
 
+Run a single query to ensure that the FAISS index, embedding slices, and MaxSim operator work end-to-end without crashing:
+
+```bash
+python -m scripts.query_index --query "what is the capital of france" --mode e2e --k 10
+```
+### Fast Sanity Check (Subset of Queries)
+
+Run evaluation on the first 50 queries to quickly check that `queries.dev.tsv` and `qrels.dev.tsv` parse correctly and that the MRR/Recall formulas compute without errors:
+
+```bash
+python -m scripts.evaluate --mode e2e --limit 50
+```
+
+### Full Evaluation & Benchmark Generation
+
+Run the evaluation across all queries in the evaluation split and write the results to `evaluation.txt`.
+
+```bash
+python -m scripts.evaluate --mode e2e | tee evaluation.txt
+```
