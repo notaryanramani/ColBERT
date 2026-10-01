@@ -124,7 +124,7 @@ With the virtualenv activated and from the repo root:
 
 ```bash
 make
-
+```
 # Task 3
 ## Instructions to Run
 ### First Testing the Retrieval Pipeline
