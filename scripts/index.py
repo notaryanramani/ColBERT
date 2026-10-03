@@ -8,7 +8,7 @@ from colbert.infra import ColBERTConfig, Run, RunConfig
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Build a CPU ColBERT index for MS MARCO")
-    parser.add_argument("--collection", default="data/msmarco/collection.tsv")
+    parser.add_argument("--collection", default="/ml_data/aryan/msmarco/collection.tsv")
     parser.add_argument("--checkpoint", default="jinaai/jina-colbert-v1-en")
     parser.add_argument("--root", default="experiments")
     parser.add_argument("--experiment", default="msmarco")

@@ -22,7 +22,7 @@ from tqdm import tqdm
 BUFFER_SIZE = 10_000
 
 #  MS MARCO Passage Ranking
-MSMARCO_DIR = os.path.join("data", "msmarco")
+MSMARCO_DIR = "/ml_data/aryan/msmarco"
 MSMARCO_COLLECTION = "msmarco-passage"
 MSMARCO_SPLITS = {
     "dev":   "msmarco-passage/dev/small",
@@ -60,7 +60,7 @@ def download_msmarco(data_dir=MSMARCO_DIR, include_train=False, limit=None):
 
 
 #  TREC CAR (Complex Answer Retrieval)
-TRECCAR_DIR = os.path.join("data", "trec-car")
+TRECCAR_DIR = "/ml_data/aryan/trec-car"
 TRECCAR_COLLECTION = "car/v1.5"
 TRECCAR_TEST = "car/v1.5/trec-y1/auto"
 
