@@ -11,6 +11,10 @@ from tqdm import tqdm
 
 from colbert.infra import ColBERTConfig
 from colbert.modeling.checkpoint import Checkpoint
+from colbert.modeling.colbert import ColBERT
+
+# Searcher-only C++ extension is not required for Checkpoint encoding
+ColBERT.try_load_torch_extensions = classmethod(lambda cls, use_gpu: None)
 
 
 def tokenize(text):
@@ -125,6 +129,42 @@ def maxsim_score(query_embedding, doc_embedding):
     return float(similarities.max(dim=1).values.sum().item())
 
 
+def pool_doc_embedding(
+    doc_embedding,
+    num_pools=None,
+    window_size=None,
+    stride=None,
+    pool_fn="mean",
+):
+    """
+    Extension 2 (Pool-Based Late Interaction):
+      P_k = Pool(E_{d_{a_k}}, ..., E_{d_{b_k}}),   k = 1, ..., K
+      S(q, d) = sum_{i=1}^{|q|} max_{k=1,...,K} (E_{q_i}^T P_k)
+    """
+    n_tokens = doc_embedding.size(0)
+    if n_tokens == 0:
+        return doc_embedding
+    if num_pools is not None and num_pools > 0:
+        k = min(int(num_pools), n_tokens)
+        chunks = torch.tensor_split(doc_embedding, k, dim=0)
+    elif window_size is not None and window_size > 0:
+        w = int(window_size)
+        s = int(stride) if stride is not None and stride > 0 else w
+        chunks = [
+            doc_embedding[start : start + w]
+            for start in range(0, n_tokens, s)
+            if start < n_tokens
+        ]
+    else:
+        return doc_embedding
+
+    if pool_fn == "max":
+        pooled = torch.stack([c.max(dim=0).values for c in chunks], dim=0)
+    else:
+        pooled = torch.stack([c.mean(dim=0) for c in chunks], dim=0)
+    return torch.nn.functional.normalize(pooled, p=2, dim=-1)
+
+
 def evaluate(runs, qrels):
     query_ids = [qid for qid in runs if qid in qrels and qrels[qid]]
     if not query_ids:
@@ -180,6 +220,10 @@ def main():
     parser.add_argument("--threads", type=int, default=4)
     parser.add_argument("--model", default="jinaai/jina-colbert-v1-en")
     parser.add_argument("--output", default=None)
+    parser.add_argument("--num-pools", type=int, default=None, help="Extension 2: fixed number of pools K per document")
+    parser.add_argument("--pool-window", type=int, default=None, help="Extension 2: local window size w (tokens per pool)")
+    parser.add_argument("--pool-stride", type=int, default=None, help="Extension 2: stride s between local windows")
+    parser.add_argument("--pool-fn", choices=["mean", "max"], default="mean", help="Extension 2: pooling function")
     args = parser.parse_args()
 
     if args.data_dir is None:
@@ -236,6 +280,23 @@ def main():
     doc_embeddings = encode_candidate_documents(
         checkpoint, candidate_ids, corpus, args.batch_size
     )
+
+    if args.num_pools is not None or args.pool_window is not None:
+        print(
+            f"Applying Pool-Based Late Interaction "
+            f"(num_pools={args.num_pools}, window={args.pool_window}, "
+            f"stride={args.pool_stride}, pool_fn={args.pool_fn})..."
+        )
+        doc_embeddings = {
+            doc_id: pool_doc_embedding(
+                emb,
+                num_pools=args.num_pools,
+                window_size=args.pool_window,
+                stride=args.pool_stride,
+                pool_fn=args.pool_fn,
+            )
+            for doc_id, emb in doc_embeddings.items()
+        }
 
     print("Reranking BM25 candidates with ColBERT MaxSim...")
     colbert_runs = {}

@@ -1,0 +1,803 @@
+{
+  "dataset": "trec-car",
+  "split": "test",
+  "model": "jinaai/jina-colbert-v1-en",
+  "num_documents": 5813,
+  "num_queries": 2125,
+  "bm25_only_metrics": {
+    "NDCG@10": 0.5015622384524389,
+    "MRR@10": 0.44442614379084966,
+    "Recall@50": 0.7468754245754247,
+    "Recall@100": 0.8166506885271592,
+    "MAP@10": 0.3075598550531324,
+    "MAP@100": 0.33389793729396156,
+    "evaluated_queries": 2125
+  },
+  "experiments": [
+    {
+      "name": "Token-Level ColBERT (Baseline, |d| tokens)",
+      "family": "baseline",
+      "num_pools": null,
+      "window_size": null,
+      "stride": null,
+      "pool_fn": "mean",
+      "total_vectors": 539964,
+      "avg_vectors_per_doc": 92.89,
+      "storage_mb_fp16": 131.83,
+      "compression_ratio": 1.0,
+      "vector_reduction_pct": 0.0,
+      "bm25_rerank_time_ms": 53.8,
+      "full_ranking_time_ms": 95905.9,
+      "bm25_rerank_metrics": {
+        "NDCG@10": 0.6546252665527185,
+        "MRR@10": 0.614618487394958,
+        "Recall@50": 0.8010703316291552,
+        "Recall@100": 0.8166506885271592,
+        "MAP@10": 0.45041579313206764,
+        "MAP@100": 0.47246454212520117,
+        "evaluated_queries": 2125
+      },
+      "full_corpus_metrics": {
+        "NDCG@10": 0.6634856259634415,
+        "MRR@10": 0.6206487394957982,
+        "Recall@50": 0.8845275339040044,
+        "Recall@100": 0.9330165762342232,
+        "MAP@10": 0.45906870681605977,
+        "MAP@100": 0.48932919196887065,
+        "evaluated_queries": 2125
+      }
+    },
+    {
+      "name": "Pool-ColBERT (Fixed K=8, Mean)",
+      "family": "fixed_K_mean",
+      "num_pools": 8,
+      "window_size": null,
+      "stride": null,
+      "pool_fn": "mean",
+      "total_vectors": 46403,
+      "avg_vectors_per_doc": 7.98,
+      "storage_mb_fp16": 11.33,
+      "compression_ratio": 11.64,
+      "vector_reduction_pct": 91.4,
+      "bm25_rerank_time_ms": 34.4,
+      "full_ranking_time_ms": 2613.1,
+      "bm25_rerank_metrics": {
+        "NDCG@10": 0.6097305478798263,
+        "MRR@10": 0.5561262371615313,
+        "Recall@50": 0.8041223273458568,
+        "Recall@100": 0.8166506885271592,
+        "MAP@10": 0.40401904999036653,
+        "MAP@100": 0.42805735990743865,
+        "evaluated_queries": 2125
+      },
+      "full_corpus_metrics": {
+        "NDCG@10": 0.6159418549086921,
+        "MRR@10": 0.5610830999066293,
+        "Recall@50": 0.8799574706339413,
+        "Recall@100": 0.9351918911154206,
+        "MAP@10": 0.41113890215345394,
+        "MAP@100": 0.4428455060832331,
+        "evaluated_queries": 2125
+      }
+    },
+    {
+      "name": "Pool-ColBERT (Fixed K=16, Mean)",
+      "family": "fixed_K_mean",
+      "num_pools": 16,
+      "window_size": null,
+      "stride": null,
+      "pool_fn": "mean",
+      "total_vectors": 92089,
+      "avg_vectors_per_doc": 15.84,
+      "storage_mb_fp16": 22.48,
+      "compression_ratio": 5.86,
+      "vector_reduction_pct": 82.9,
+      "bm25_rerank_time_ms": 42.2,
+      "full_ranking_time_ms": 3916.4,
+      "bm25_rerank_metrics": {
+        "NDCG@10": 0.6054711242571568,
+        "MRR@10": 0.5504171802054154,
+        "Recall@50": 0.8044461368696663,
+        "Recall@100": 0.8166506885271592,
+        "MAP@10": 0.39997273250040755,
+        "MAP@100": 0.4246776587571366,
+        "evaluated_queries": 2125
+      },
+      "full_corpus_metrics": {
+        "NDCG@10": 0.611471095869118,
+        "MRR@10": 0.5548560224089636,
+        "Recall@50": 0.8834069453422395,
+        "Recall@100": 0.9403058085705144,
+        "MAP@10": 0.40685352978228323,
+        "MAP@100": 0.43947714029293145,
+        "evaluated_queries": 2125
+      }
+    },
+    {
+      "name": "Pool-ColBERT (Fixed K=24, Mean)",
+      "family": "fixed_K_mean",
+      "num_pools": 24,
+      "window_size": null,
+      "stride": null,
+      "pool_fn": "mean",
+      "total_vectors": 136370,
+      "avg_vectors_per_doc": 23.46,
+      "storage_mb_fp16": 33.29,
+      "compression_ratio": 3.96,
+      "vector_reduction_pct": 74.7,
+      "bm25_rerank_time_ms": 41.1,
+      "full_ranking_time_ms": 6195.7,
+      "bm25_rerank_metrics": {
+        "NDCG@10": 0.6095626862783403,
+        "MRR@10": 0.5546296918767507,
+        "Recall@50": 0.8051033084562496,
+        "Recall@100": 0.8166506885271592,
+        "MAP@10": 0.40373782816830434,
+        "MAP@100": 0.4273963538066245,
+        "evaluated_queries": 2125
+      },
+      "full_corpus_metrics": {
+        "NDCG@10": 0.6150013176363337,
+        "MRR@10": 0.5586156862745099,
+        "Recall@50": 0.8870904455022103,
+        "Recall@100": 0.9407620177208412,
+        "MAP@10": 0.4101353973441228,
+        "MAP@100": 0.4424906438507459,
+        "evaluated_queries": 2125
+      }
+    },
+    {
+      "name": "Pool-ColBERT (Fixed K=32, Mean)",
+      "family": "fixed_K_mean",
+      "num_pools": 32,
+      "window_size": null,
+      "stride": null,
+      "pool_fn": "mean",
+      "total_vectors": 178717,
+      "avg_vectors_per_doc": 30.74,
+      "storage_mb_fp16": 43.63,
+      "compression_ratio": 3.02,
+      "vector_reduction_pct": 66.9,
+      "bm25_rerank_time_ms": 40.5,
+      "full_ranking_time_ms": 8046.8,
+      "bm25_rerank_metrics": {
+        "NDCG@10": 0.61099394843477,
+        "MRR@10": 0.559788608776844,
+        "Recall@50": 0.8045791254497137,
+        "Recall@100": 0.8166506885271592,
+        "MAP@10": 0.4070451562847361,
+        "MAP@100": 0.43061513455702183,
+        "evaluated_queries": 2125
+      },
+      "full_corpus_metrics": {
+        "NDCG@10": 0.6181804898642639,
+        "MRR@10": 0.5645591036414566,
+        "Recall@50": 0.8849080364080364,
+        "Recall@100": 0.9404417053534702,
+        "MAP@10": 0.41442323336742104,
+        "MAP@100": 0.4460877277902732,
+        "evaluated_queries": 2125
+      }
+    },
+    {
+      "name": "Pool-ColBERT (Fixed K=48, Mean)",
+      "family": "fixed_K_mean",
+      "num_pools": 48,
+      "window_size": null,
+      "stride": null,
+      "pool_fn": "mean",
+      "total_vectors": 256703,
+      "avg_vectors_per_doc": 44.16,
+      "storage_mb_fp16": 62.67,
+      "compression_ratio": 2.1,
+      "vector_reduction_pct": 52.5,
+      "bm25_rerank_time_ms": 40.5,
+      "full_ranking_time_ms": 11112.7,
+      "bm25_rerank_metrics": {
+        "NDCG@10": 0.6263556388995692,
+        "MRR@10": 0.5774446311858076,
+        "Recall@50": 0.8055598741128153,
+        "Recall@100": 0.8166506885271592,
+        "MAP@10": 0.42438798608332223,
+        "MAP@100": 0.44743552521485497,
+        "evaluated_queries": 2125
+      },
+      "full_corpus_metrics": {
+        "NDCG@10": 0.6344718876367438,
+        "MRR@10": 0.5840199813258637,
+        "Recall@50": 0.8847288632935691,
+        "Recall@100": 0.9394247575953458,
+        "MAP@10": 0.4331217246157722,
+        "MAP@100": 0.4640507711236757,
+        "evaluated_queries": 2125
+      }
+    },
+    {
+      "name": "Pool-ColBERT (Fixed K=64, Mean)",
+      "family": "fixed_K_mean",
+      "num_pools": 64,
+      "window_size": null,
+      "stride": null,
+      "pool_fn": "mean",
+      "total_vectors": 324027,
+      "avg_vectors_per_doc": 55.74,
+      "storage_mb_fp16": 79.11,
+      "compression_ratio": 1.67,
+      "vector_reduction_pct": 40.0,
+      "bm25_rerank_time_ms": 33.8,
+      "full_ranking_time_ms": 16130.2,
+      "bm25_rerank_metrics": {
+        "NDCG@10": 0.6341350776803858,
+        "MRR@10": 0.5885262371615313,
+        "Recall@50": 0.8059173447467565,
+        "Recall@100": 0.8166506885271592,
+        "MAP@10": 0.4292857119884991,
+        "MAP@100": 0.45222933832515005,
+        "evaluated_queries": 2125
+      },
+      "full_corpus_metrics": {
+        "NDCG@10": 0.6420425956238732,
+        "MRR@10": 0.5951284780578898,
+        "Recall@50": 0.8861990662931839,
+        "Recall@100": 0.9397852617970264,
+        "MAP@10": 0.4375689251997095,
+        "MAP@100": 0.46919024581626284,
+        "evaluated_queries": 2125
+      }
+    },
+    {
+      "name": "Pool-ColBERT (Fixed K=96, Mean)",
+      "family": "fixed_K_mean",
+      "num_pools": 96,
+      "window_size": null,
+      "stride": null,
+      "pool_fn": "mean",
+      "total_vectors": 423517,
+      "avg_vectors_per_doc": 72.86,
+      "storage_mb_fp16": 103.4,
+      "compression_ratio": 1.27,
+      "vector_reduction_pct": 21.6,
+      "bm25_rerank_time_ms": 33.6,
+      "full_ranking_time_ms": 24628.2,
+      "bm25_rerank_metrics": {
+        "NDCG@10": 0.6475168801861279,
+        "MRR@10": 0.6062087768440709,
+        "Recall@50": 0.8027434885376061,
+        "Recall@100": 0.8166506885271592,
+        "MAP@10": 0.4442366989758867,
+        "MAP@100": 0.46584557075581845,
+        "evaluated_queries": 2125
+      },
+      "full_corpus_metrics": {
+        "NDCG@10": 0.6569596227627359,
+        "MRR@10": 0.6134791783380017,
+        "Recall@50": 0.88713049825991,
+        "Recall@100": 0.9354339908457555,
+        "MAP@10": 0.45290949831784566,
+        "MAP@100": 0.48292437878817357,
+        "evaluated_queries": 2125
+      }
+    },
+    {
+      "name": "Pool-ColBERT (Fixed K=32, Max)",
+      "family": "fixed_K_max",
+      "num_pools": 32,
+      "window_size": null,
+      "stride": null,
+      "pool_fn": "max",
+      "total_vectors": 178717,
+      "avg_vectors_per_doc": 30.74,
+      "storage_mb_fp16": 43.63,
+      "compression_ratio": 3.02,
+      "vector_reduction_pct": 66.9,
+      "bm25_rerank_time_ms": 39.8,
+      "full_ranking_time_ms": 7835.5,
+      "bm25_rerank_metrics": {
+        "NDCG@10": 0.49970495471108156,
+        "MRR@10": 0.44108851540616245,
+        "Recall@50": 0.7909500989206871,
+        "Recall@100": 0.8166506885271592,
+        "MAP@10": 0.2980153843018689,
+        "MAP@100": 0.3269656248433725,
+        "evaluated_queries": 2125
+      },
+      "full_corpus_metrics": {
+        "NDCG@10": 0.498638913774253,
+        "MRR@10": 0.442222969187675,
+        "Recall@50": 0.8226606112841407,
+        "Recall@100": 0.908703885003885,
+        "MAP@10": 0.29968721985090335,
+        "MAP@100": 0.3339163005203343,
+        "evaluated_queries": 2125
+      }
+    },
+    {
+      "name": "Pool-ColBERT (Fixed K=64, Max)",
+      "family": "fixed_K_max",
+      "num_pools": 64,
+      "window_size": null,
+      "stride": null,
+      "pool_fn": "max",
+      "total_vectors": 324027,
+      "avg_vectors_per_doc": 55.74,
+      "storage_mb_fp16": 79.11,
+      "compression_ratio": 1.67,
+      "vector_reduction_pct": 40.0,
+      "bm25_rerank_time_ms": 41.4,
+      "full_ranking_time_ms": 14406.9,
+      "bm25_rerank_metrics": {
+        "NDCG@10": 0.6043141516128567,
+        "MRR@10": 0.5538647992530346,
+        "Recall@50": 0.8036189013600779,
+        "Recall@100": 0.8166506885271592,
+        "MAP@10": 0.3964909700917404,
+        "MAP@100": 0.4206541024436767,
+        "evaluated_queries": 2125
+      },
+      "full_corpus_metrics": {
+        "NDCG@10": 0.611388784156886,
+        "MRR@10": 0.5600138188608776,
+        "Recall@50": 0.8800871128871128,
+        "Recall@100": 0.9354987835693719,
+        "MAP@10": 0.4037055694129503,
+        "MAP@100": 0.4359815391348811,
+        "evaluated_queries": 2125
+      }
+    },
+    {
+      "name": "Pool-ColBERT (Window w=2, Mean)",
+      "family": "window_mean",
+      "num_pools": null,
+      "window_size": 2,
+      "stride": 2,
+      "pool_fn": "mean",
+      "total_vectors": 271422,
+      "avg_vectors_per_doc": 46.69,
+      "storage_mb_fp16": 66.27,
+      "compression_ratio": 1.99,
+      "vector_reduction_pct": 49.7,
+      "bm25_rerank_time_ms": 48.4,
+      "full_ranking_time_ms": 32675.7,
+      "bm25_rerank_metrics": {
+        "NDCG@10": 0.6465363014492066,
+        "MRR@10": 0.605134827264239,
+        "Recall@50": 0.8013154773331244,
+        "Recall@100": 0.8166506885271592,
+        "MAP@10": 0.4403803002682554,
+        "MAP@100": 0.4634933200681108,
+        "evaluated_queries": 2125
+      },
+      "full_corpus_metrics": {
+        "NDCG@10": 0.653997852497711,
+        "MRR@10": 0.6117271708683473,
+        "Recall@50": 0.8859798045092162,
+        "Recall@100": 0.9329275991981875,
+        "MAP@10": 0.44853120981726025,
+        "MAP@100": 0.47902594611704663,
+        "evaluated_queries": 2125
+      }
+    },
+    {
+      "name": "Pool-ColBERT (Window w=3, Mean)",
+      "family": "window_mean",
+      "num_pools": null,
+      "window_size": 3,
+      "stride": 3,
+      "pool_fn": "mean",
+      "total_vectors": 181883,
+      "avg_vectors_per_doc": 31.29,
+      "storage_mb_fp16": 44.41,
+      "compression_ratio": 2.97,
+      "vector_reduction_pct": 66.3,
+      "bm25_rerank_time_ms": 41.4,
+      "full_ranking_time_ms": 17248.3,
+      "bm25_rerank_metrics": {
+        "NDCG@10": 0.6349380526531382,
+        "MRR@10": 0.5914972922502335,
+        "Recall@50": 0.8000229398052928,
+        "Recall@100": 0.8166506885271592,
+        "MAP@10": 0.4310912756213596,
+        "MAP@100": 0.4537962349265061,
+        "evaluated_queries": 2125
+      },
+      "full_corpus_metrics": {
+        "NDCG@10": 0.6419699765791081,
+        "MRR@10": 0.5984898225957049,
+        "Recall@50": 0.882088080546904,
+        "Recall@100": 0.9341000666000665,
+        "MAP@10": 0.4391447531605235,
+        "MAP@100": 0.46960773774646397,
+        "evaluated_queries": 2125
+      }
+    },
+    {
+      "name": "Pool-ColBERT (Window w=4, Mean)",
+      "family": "window_mean",
+      "num_pools": null,
+      "window_size": 4,
+      "stride": 4,
+      "pool_fn": "mean",
+      "total_vectors": 137159,
+      "avg_vectors_per_doc": 23.6,
+      "storage_mb_fp16": 33.49,
+      "compression_ratio": 3.94,
+      "vector_reduction_pct": 74.6,
+      "bm25_rerank_time_ms": 40.7,
+      "full_ranking_time_ms": 17604.3,
+      "bm25_rerank_metrics": {
+        "NDCG@10": 0.6320329340349696,
+        "MRR@10": 0.5886360410831,
+        "Recall@50": 0.7997840571193513,
+        "Recall@100": 0.8166506885271592,
+        "MAP@10": 0.4275544067256532,
+        "MAP@100": 0.4504609475951714,
+        "evaluated_queries": 2125
+      },
+      "full_corpus_metrics": {
+        "NDCG@10": 0.6394658469630478,
+        "MRR@10": 0.5941099906629317,
+        "Recall@50": 0.8801943585825939,
+        "Recall@100": 0.9334584062995827,
+        "MAP@10": 0.4354479722259274,
+        "MAP@100": 0.4658641066620651,
+        "evaluated_queries": 2125
+      }
+    },
+    {
+      "name": "Pool-ColBERT (Window w=6, Mean)",
+      "family": "window_mean",
+      "num_pools": null,
+      "window_size": 6,
+      "stride": 6,
+      "pool_fn": "mean",
+      "total_vectors": 92366,
+      "avg_vectors_per_doc": 15.89,
+      "storage_mb_fp16": 22.55,
+      "compression_ratio": 5.85,
+      "vector_reduction_pct": 82.9,
+      "bm25_rerank_time_ms": 43.1,
+      "full_ranking_time_ms": 8727.3,
+      "bm25_rerank_metrics": {
+        "NDCG@10": 0.6281609509202454,
+        "MRR@10": 0.5813572362278244,
+        "Recall@50": 0.8004527779410132,
+        "Recall@100": 0.8166506885271592,
+        "MAP@10": 0.42277382360351545,
+        "MAP@100": 0.44601342477666756,
+        "evaluated_queries": 2125
+      },
+      "full_corpus_metrics": {
+        "NDCG@10": 0.634909629463319,
+        "MRR@10": 0.5872168067226892,
+        "Recall@50": 0.880752652576182,
+        "Recall@100": 0.9332553302906244,
+        "MAP@10": 0.4302730312865887,
+        "MAP@100": 0.4611539833710724,
+        "evaluated_queries": 2125
+      }
+    },
+    {
+      "name": "Pool-ColBERT (Window w=8, Mean)",
+      "family": "window_mean",
+      "num_pools": null,
+      "window_size": 8,
+      "stride": 8,
+      "pool_fn": "mean",
+      "total_vectors": 70022,
+      "avg_vectors_per_doc": 12.05,
+      "storage_mb_fp16": 17.1,
+      "compression_ratio": 7.71,
+      "vector_reduction_pct": 87.0,
+      "bm25_rerank_time_ms": 42.4,
+      "full_ranking_time_ms": 7297.5,
+      "bm25_rerank_metrics": {
+        "NDCG@10": 0.626155601628326,
+        "MRR@10": 0.5776683473389356,
+        "Recall@50": 0.8002847564200505,
+        "Recall@100": 0.8166506885271592,
+        "MAP@10": 0.4204224958872438,
+        "MAP@100": 0.4440313777884218,
+        "evaluated_queries": 2125
+      },
+      "full_corpus_metrics": {
+        "NDCG@10": 0.6334948036624176,
+        "MRR@10": 0.5840070961718019,
+        "Recall@50": 0.8778008586185057,
+        "Recall@100": 0.9322309265897502,
+        "MAP@10": 0.42695007336267843,
+        "MAP@100": 0.4583206060459757,
+        "evaluated_queries": 2125
+      }
+    },
+    {
+      "name": "Pool-ColBERT (Sliding w=2, s=1, Mean)",
+      "family": "sliding_mean",
+      "num_pools": null,
+      "window_size": 2,
+      "stride": 1,
+      "pool_fn": "mean",
+      "total_vectors": 539964,
+      "avg_vectors_per_doc": 92.89,
+      "storage_mb_fp16": 131.83,
+      "compression_ratio": 1.0,
+      "vector_reduction_pct": 0.0,
+      "bm25_rerank_time_ms": 52.5,
+      "full_ranking_time_ms": 94509.9,
+      "bm25_rerank_metrics": {
+        "NDCG@10": 0.6509410481379146,
+        "MRR@10": 0.6094511671335201,
+        "Recall@50": 0.8013701925525455,
+        "Recall@100": 0.8166506885271592,
+        "MAP@10": 0.44554504831562247,
+        "MAP@100": 0.46794583502657106,
+        "evaluated_queries": 2125
+      },
+      "full_corpus_metrics": {
+        "NDCG@10": 0.6581333290637168,
+        "MRR@10": 0.6161570494864613,
+        "Recall@50": 0.8825542209424563,
+        "Recall@100": 0.9330501015324545,
+        "MAP@10": 0.45407111533502287,
+        "MAP@100": 0.4843046053095525,
+        "evaluated_queries": 2125
+      }
+    },
+    {
+      "name": "Pool-ColBERT (Sliding w=3, s=1, Mean)",
+      "family": "sliding_mean",
+      "num_pools": null,
+      "window_size": 3,
+      "stride": 1,
+      "pool_fn": "mean",
+      "total_vectors": 539964,
+      "avg_vectors_per_doc": 92.89,
+      "storage_mb_fp16": 131.83,
+      "compression_ratio": 1.0,
+      "vector_reduction_pct": 0.0,
+      "bm25_rerank_time_ms": 43.0,
+      "full_ranking_time_ms": 98128.2,
+      "bm25_rerank_metrics": {
+        "NDCG@10": 0.6478358666703359,
+        "MRR@10": 0.6069667600373482,
+        "Recall@50": 0.8015435290199996,
+        "Recall@100": 0.8166506885271592,
+        "MAP@10": 0.4429871272953626,
+        "MAP@100": 0.4654561004911588,
+        "evaluated_queries": 2125
+      },
+      "full_corpus_metrics": {
+        "NDCG@10": 0.6558935914088884,
+        "MRR@10": 0.6139034547152195,
+        "Recall@50": 0.8862628449981391,
+        "Recall@100": 0.9361760585819409,
+        "MAP@10": 0.45156560876202334,
+        "MAP@100": 0.4816298659249932,
+        "evaluated_queries": 2125
+      }
+    },
+    {
+      "name": "Pool-ColBERT (Sliding w=3, s=2, Mean)",
+      "family": "sliding_mean",
+      "num_pools": null,
+      "window_size": 3,
+      "stride": 2,
+      "pool_fn": "mean",
+      "total_vectors": 271422,
+      "avg_vectors_per_doc": 46.69,
+      "storage_mb_fp16": 66.27,
+      "compression_ratio": 1.99,
+      "vector_reduction_pct": 49.7,
+      "bm25_rerank_time_ms": 42.8,
+      "full_ranking_time_ms": 48711.9,
+      "bm25_rerank_metrics": {
+        "NDCG@10": 0.640854856536834,
+        "MRR@10": 0.5995680672268907,
+        "Recall@50": 0.8010311276958335,
+        "Recall@100": 0.8166506885271592,
+        "MAP@10": 0.4362943084641264,
+        "MAP@100": 0.45824011994722463,
+        "evaluated_queries": 2125
+      },
+      "full_corpus_metrics": {
+        "NDCG@10": 0.6482498350233147,
+        "MRR@10": 0.6060126984126984,
+        "Recall@50": 0.8795775805893452,
+        "Recall@100": 0.933444434650317,
+        "MAP@10": 0.44384856965008224,
+        "MAP@100": 0.4733822660639369,
+        "evaluated_queries": 2125
+      }
+    },
+    {
+      "name": "Pool-ColBERT (Sliding w=4, s=2, Mean)",
+      "family": "sliding_mean",
+      "num_pools": null,
+      "window_size": 4,
+      "stride": 2,
+      "pool_fn": "mean",
+      "total_vectors": 271422,
+      "avg_vectors_per_doc": 46.69,
+      "storage_mb_fp16": 66.27,
+      "compression_ratio": 1.99,
+      "vector_reduction_pct": 49.7,
+      "bm25_rerank_time_ms": 44.8,
+      "full_ranking_time_ms": 46906.1,
+      "bm25_rerank_metrics": {
+        "NDCG@10": 0.6359334590494083,
+        "MRR@10": 0.5929376283846872,
+        "Recall@50": 0.8010109596286067,
+        "Recall@100": 0.8166506885271592,
+        "MAP@10": 0.431521545432988,
+        "MAP@100": 0.4541526499789253,
+        "evaluated_queries": 2125
+      },
+      "full_corpus_metrics": {
+        "NDCG@10": 0.644828205223421,
+        "MRR@10": 0.6000095238095238,
+        "Recall@50": 0.8839281111045817,
+        "Recall@100": 0.9349154727625315,
+        "MAP@10": 0.4397726043750834,
+        "MAP@100": 0.4704987289553783,
+        "evaluated_queries": 2125
+      }
+    }
+  ],
+  "qualitative_examples": {
+    "Pool-ColBERT (Window w=2, Mean)": [
+      {
+        "qid": "Migrant%20domestic%20workers/Vulnerability%20to%20abuse/Lasting%20effects%20of%20abuse",
+        "query": "Migrant domestic workers Vulnerability to abuse Lasting effects of abuse",
+        "baseline_rank": 6,
+        "pooled_rank": 1,
+        "relevant_doc_id": "24145c820bcf6f136f85be14fd79364d06d0a1c9",
+        "relevant_doc_snippet": "Even when migrant domestic workers return to their native countries, abuse experienced during their domestic employment abroad can have lasting effects. Workers often do not have access to support mechanisms and do not have the possibility to seek legal counse",
+        "baseline_top1_false_positive_id": "99adc28cc172a699df872675a063accf5c6ad6f7",
+        "baseline_top1_snippet": "Migrant domestic workers, due to the nature of their work and to their status as migrants, or irregular migrants, are subject to a number of challenges that prevent collective action and claims for rights. The same factors that make migrant domestic workers vu"
+      },
+      {
+        "qid": "Coconut%20oil/Uses/Personal%20uses",
+        "query": "Coconut oil Uses Personal uses",
+        "baseline_rank": 5,
+        "pooled_rank": 1,
+        "relevant_doc_id": "c1ad64feebc99661d7fd7e7c1629aa3e9ed195dc",
+        "relevant_doc_snippet": "Coconut oil is as effective and safe as mineral oil when used as a moisturizer for mild to moderate xerosis (dry skin) and was shown in one study to reduce protein loss when used in hair.",
+        "baseline_top1_false_positive_id": "f3078f04e79508c9a80575a5531d538e5b503d49",
+        "baseline_top1_snippet": "The Philippines, Vanuatu, Samoa, and several other tropical island countries use coconut oil as an alternative fuel source to run automobiles, trucks, and buses, and to power generators. Coconut oil is currently used as a fuel for transport in the Philippines."
+      },
+      {
+        "qid": "Coffee%20preparation/Brewing",
+        "query": "Coffee preparation Brewing",
+        "baseline_rank": 5,
+        "pooled_rank": 1,
+        "relevant_doc_id": "b233abb9521ccd0f95431c4271ddbc2377219b53",
+        "relevant_doc_snippet": "Coffee can be brewed in several different ways, but these methods fall into four main groups depending on how the water is introduced to the coffee grounds: decoction (through boiling), infusion (through steeping), gravitational feed (used with percolators and",
+        "baseline_top1_false_positive_id": "9a019d5ea9ae175b06cb9e4e4fb107daa0406a29",
+        "baseline_top1_snippet": "There are four methods of grinding coffee for brewing: burr-grinding, chopping, pounding, and roller grinding."
+      },
+      {
+        "qid": "Kidney%20stone%20disease/Pathophysiology/Inhibitors%20of%20stone%20formation",
+        "query": "Kidney stone disease Pathophysiology Inhibitors of stone formation",
+        "baseline_rank": 5,
+        "pooled_rank": 1,
+        "relevant_doc_id": "7891e8a32829541ceabdfb620e18313e4f6159f7",
+        "relevant_doc_snippet": "Sufficient dietary intake of magnesium and citrate inhibits the formation of calcium oxalate and calcium phosphate stones; in addition, magnesium and citrate operate synergistically to inhibit kidney stones. Magnesium's efficacy in subduing stone formation and",
+        "baseline_top1_false_positive_id": "0a9c733f1e9773037667176d05b5ee9b5afdf347",
+        "baseline_top1_snippet": "One of the recognized medical therapies for prevention of stones is the thiazide and thiazide-like diuretics, such as chlorthalidone or indapamide. These drugs inhibit the formation of calcium-containing stones by reducing urinary calcium excretion. Sodium res"
+      },
+      {
+        "qid": "Gender%20role/Cultures/Religion",
+        "query": "Gender role Cultures Religion",
+        "baseline_rank": 4,
+        "pooled_rank": 1,
+        "relevant_doc_id": "5a3a10e458d25368086d12b3d25ae3179164fb8e",
+        "relevant_doc_snippet": "The roles of women in Christianity can vary considerably today as they have varied historically since the first century New Testament church. This is especially true in marriage and in formal ministry positions within certain Christian denominations, churches,",
+        "baseline_top1_false_positive_id": "8d3a1285b23b2ef59a79fcc2531333946a8431b7",
+        "baseline_top1_snippet": "In many cultures, gender roles - at least for men - simultaneously act as an indicator for heterosexuality, and as a boundary of acceptable behavior for straight people - or in some cases, in cultures where homosexuality is illegal and/or taboo, all people. Th"
+      }
+    ],
+    "Pool-ColBERT (Fixed K=64, Mean)": [
+      {
+        "qid": "History%20of%20catecholamine%20research/Adrenaline%20in%20the%20adrenal%20medulla/Independent%20discoverers",
+        "query": "History of catecholamine research Adrenaline in the adrenal medulla Independent discoverers",
+        "baseline_rank": 5,
+        "pooled_rank": 1,
+        "relevant_doc_id": "3d09b1c2f4e0077f9e5b780c28da922f8a6b194a",
+        "relevant_doc_snippet": "Another year later, the US-American ophthalmologist William Bates, perhaps motivated like Oliver, instilled adrenal extracts into the eye, found that \u2033the conjunctiva of the globe and lids whitened in a few minutes\u2033, correctly explained the effect by vasoconst",
+        "baseline_top1_false_positive_id": "e0303189200ff60eb377ce604a79bd1e7feb49cf",
+        "baseline_top1_snippet": "Catecholamines are synthesized inside cells and sequestered in intracellular vesicles. This was first shown by Blaschko and Arnold Welch (1908\u20132003) in Oxford and by Hillarp and his group in Lund for the adrenal medulla and later for sympathetic nerves and the"
+      },
+      {
+        "qid": "Homeostasis/Examples%20of%20some%20of%20the%20better%20understood%20physiological%20homeostats/The%20volume%20of%20body%20water%20homeostat",
+        "query": "Homeostasis Examples of some of the better understood physiological homeostats The volume of body water homeostat",
+        "baseline_rank": 5,
+        "pooled_rank": 1,
+        "relevant_doc_id": "4b15ca10106866cc3b9abe5af7cf2085ef82e341",
+        "relevant_doc_snippet": "Note that urinary water loss, when the body water homeostat is intact, is a ''compensatory'' water loss, ''correcting'' any water excess in the body. However, since the kidneys cannot generate water, the thirst reflex is the all important second effector mecha",
+        "baseline_top1_false_positive_id": "a5ad5ff652d70c1e66613b3c001943b65e2d43e8",
+        "baseline_top1_snippet": "The body water homeostat can be compromised by the inability to secrete ADH in response to even the normal daily water losses via the exhaled air, the feces, and insensible sweating. On receiving a zero blood ADH signal, the kidneys produce huge unchanging vol"
+      },
+      {
+        "qid": "Hydrogenation/Process/Electrolytic%20hydrogenation",
+        "query": "Hydrogenation Process Electrolytic hydrogenation",
+        "baseline_rank": 5,
+        "pooled_rank": 1,
+        "relevant_doc_id": "119ed168b4da6aee55f37bcded1d3bbdd583bf36",
+        "relevant_doc_snippet": "Polar substrates such as nitriles can be hydrogenated electrochemically, using protic solvents and reducing equivalents as the source of hydrogen.",
+        "baseline_top1_false_positive_id": "50e0b955004a7db13baa016e5fee611b4fab5ed2",
+        "baseline_top1_snippet": "Hydrogenation is a useful means for converting unsaturated compounds into saturated derivatives.  Substrates include not only alkenes and alkynes, but also aldehydes, imines, and nitriles, which are converted into the corresponding saturated compounds, i.e. al"
+      },
+      {
+        "qid": "Migrant%20domestic%20workers/Drivers%20for%20demand%20and%20supply%20for%20migrant%20domestic%20workers/Supply/Remittances",
+        "query": "Migrant domestic workers Drivers for demand and supply for migrant domestic workers Supply Remittances",
+        "baseline_rank": 5,
+        "pooled_rank": 1,
+        "relevant_doc_id": "7ded559d78b037a2c7f092c3635a7350b3fa9681",
+        "relevant_doc_snippet": "Because these workers' remittances are a source of revenues for their countries of origin, some countries actively encourage their female workers to migrate abroad for domestic work as a key development strategy, offsetting unemployment problems, while growing",
+        "baseline_top1_false_positive_id": "bcbc86e7f27c9797fb383d4cbdb45b7700fe0774",
+        "baseline_top1_snippet": "In the Western world,  the employment of migrant domestic workers differs from the predominant hiring and recruiting trends in the East. In Europe, migration has followed a pattern from East to West, that is from Eastern Europe to Western, Southern and Norther"
+      },
+      {
+        "qid": "Organic%20farming/History/Terminology",
+        "query": "Organic farming History Terminology",
+        "baseline_rank": 5,
+        "pooled_rank": 1,
+        "relevant_doc_id": "263860d7562c8b20f7c35e7644482e2432b357ad",
+        "relevant_doc_snippet": "The use of \"organic\" popularized by Howard and Rodale, on the other hand, refers more narrowly to the use of organic matter derived from plant compost and animal manures to improve the humus content of soils, grounded in the work of early soil scientists who d",
+        "baseline_top1_false_positive_id": "a3191d1b82581527afb48d9589d640aa83ddb00a",
+        "baseline_top1_snippet": "In 1940 Howard published his ''An Agricultural Testament''. In this book he adopted Northbourne's terminology of \"organic farming.\" Howard's work spread widely, and he became known as the \"father of organic farming\" for his work in applying scientific knowledg"
+      }
+    ],
+    "Pool-ColBERT (Sliding w=3, s=1, Mean)": [
+      {
+        "qid": "Organic%20farming/History/Terminology",
+        "query": "Organic farming History Terminology",
+        "baseline_rank": 5,
+        "pooled_rank": 1,
+        "relevant_doc_id": "263860d7562c8b20f7c35e7644482e2432b357ad",
+        "relevant_doc_snippet": "The use of \"organic\" popularized by Howard and Rodale, on the other hand, refers more narrowly to the use of organic matter derived from plant compost and animal manures to improve the humus content of soils, grounded in the work of early soil scientists who d",
+        "baseline_top1_false_positive_id": "a3191d1b82581527afb48d9589d640aa83ddb00a",
+        "baseline_top1_snippet": "In 1940 Howard published his ''An Agricultural Testament''. In this book he adopted Northbourne's terminology of \"organic farming.\" Howard's work spread widely, and he became known as the \"father of organic farming\" for his work in applying scientific knowledg"
+      },
+      {
+        "qid": "Beach%20nourishment/Costs",
+        "query": "Beach nourishment Costs",
+        "baseline_rank": 4,
+        "pooled_rank": 1,
+        "relevant_doc_id": "1efb2cf80b958468ff64661c493a1d13181ab929",
+        "relevant_doc_snippet": "In many coastal areas, the economic impacts of a wide beach can be substantial. The 10 mi\u2013long shoreline fronting Miami Beach, Florida was replenished over the period 1976\u20131981. The project cost approximately $64,000,000 and revitalized the area's economy. Pri",
+        "baseline_top1_false_positive_id": "b4cdd07fd593717948cc7a2b6626f616b30bd802",
+        "baseline_top1_snippet": "Beach nourishment has significant impacts on local ecosystems. Nourishment may cause direct mortality to sessile organisms in the target area by burying them in the new sand. Seafloor habitat in both source and target areas are disrupted, e.g., when sand is de"
+      },
+      {
+        "qid": "Gender%20role/Cultures/Religion",
+        "query": "Gender role Cultures Religion",
+        "baseline_rank": 4,
+        "pooled_rank": 1,
+        "relevant_doc_id": "5a3a10e458d25368086d12b3d25ae3179164fb8e",
+        "relevant_doc_snippet": "The roles of women in Christianity can vary considerably today as they have varied historically since the first century New Testament church. This is especially true in marriage and in formal ministry positions within certain Christian denominations, churches,",
+        "baseline_top1_false_positive_id": "8d3a1285b23b2ef59a79fcc2531333946a8431b7",
+        "baseline_top1_snippet": "In many cultures, gender roles - at least for men - simultaneously act as an indicator for heterosexuality, and as a boundary of acceptable behavior for straight people - or in some cases, in cultures where homosexuality is illegal and/or taboo, all people. Th"
+      },
+      {
+        "qid": "Human%20rights%20in%20Brazil/Ethnic%20minorities",
+        "query": "Human rights in Brazil Ethnic minorities",
+        "baseline_rank": 4,
+        "pooled_rank": 1,
+        "relevant_doc_id": "218ecdb3eb28df64ce9315517779c552aa94364d",
+        "relevant_doc_snippet": "Although the law prohibits racial discrimination, darker-skinned citizens, particularly Afro-Brazilians, frequently encountered discrimination. The law specifically prohibits denial of public or private facilities, employment, or housing to anyone based on rac",
+        "baseline_top1_false_positive_id": "b91b3b3383461bfd34ef647196d5b46e3b529065",
+        "baseline_top1_snippet": "Many human rights defenders who have arisen to oppose human rights violations  and their families and friends suffer violence and persecution across Brazil. Telephone death threats are prominent and often followed through by ambush or assassination."
+      },
+      {
+        "qid": "Kidney%20stone%20disease/History/Etymology",
+        "query": "Kidney stone disease History Etymology",
+        "baseline_rank": 4,
+        "pooled_rank": 1,
+        "relevant_doc_id": "4ec5de78a37b47457dc3eb5e233051d9d54c6af0",
+        "relevant_doc_snippet": "''Renal calculus'' is from the Latin ''r\u0113n\u0113s'' meaning \"kidneys,\" and ''calculus'' meaning \"pebble\". Lithiasis (stone formation) in the kidneys is called nephrolithiasis (), from ''nephro-'' meaning kidney + ''-lith'' meaning stone and ''-iasis'' meaning disor",
+        "baseline_top1_false_positive_id": "c7da09ad57a7da267c019f317f9589d32896f9d1",
+        "baseline_top1_snippet": "The hallmark of a stone that obstructs the ureter or renal pelvis is excruciating, intermittent pain that radiates from the flank to the groin or to the inner thigh. This pain, known as renal colic, is often described as one of the strongest pain sensations kn"
+      }
+    ]
+  }
+}

@@ -222,3 +222,6 @@ __marimo__/
 experiments/
 scifact/
 data/
+
+# Extension 2 detailed working notes (local only)
+extension2_pool_late_interaction.md
