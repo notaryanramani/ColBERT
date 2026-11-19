@@ -1,0 +1,5 @@
+msmarco MRR@10: 0.4334 -> 0.6391
+msmarco Recall@50: 0.7897 -> 0.8525
+
+trec-car MRR@10: 0.4085 -> 0.5780
+trec-car MAP: 0.2954 -> 0.4304

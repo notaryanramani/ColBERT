@@ -29,7 +29,7 @@ Data folder structure:
 
 ```text
 data/msmarco/
-├── collection.tsv       
+├── collections.tsv       
 ├── queries.dev.tsv      
 └── qrels.dev.tsv        
 ```
@@ -50,7 +50,7 @@ python scripts/data.py msmarco --limit 100000
 
 ## How to load the downloaded data
 
-Documents are saved inside `data/msmarco/collection.tsv`. Each row has the document
+Documents are saved inside `data/msmarco/collections.tsv`. Each row has the document
 identifier that must be retained in search results. Evaluate the retrieved
 document identifiers against `data/msmarco/qrels.dev.tsv`, using the matching
 queries in `data/msmarco/queries.dev.tsv`.
@@ -72,7 +72,7 @@ The same layout is available for TREC CAR:
 python scripts/data.py trec-car
 ```
 
-Use `data/trec-car/collection.tsv`, `queries.test.tsv`, and `qrels.test.tsv`
+Use `data/trec-car/collections.tsv`, `queries.test.tsv`, and `qrels.test.tsv`
 when indexing and evaluating that dataset for TREC CAR.
 
 # Task 2 — Indexing Documents into a Vector DB
@@ -94,7 +94,7 @@ pip install numpy torch transformers faiss-cpu tqdm ir_datasets pandas safetenso
 | `scripts/config.py` | All hyperparameters — encoder dims, batch sizes, storage dtype, FAISS params, paths. Single source of truth referenced by every other script. |
 | `scripts/colbert_model.py` | ColBERT model definition: BERT encoders for query and document (§3.2), linear projection `768 → 128` with L2 normalization, and the `maxsim()` late-interaction operator (§3.3, Eq. 3). |
 | `scripts/utils.py` | Indexing throughput helpers implementing the four §3.4 optimizations: `length_bucket()` (length-based bucketing), `pad_batch()` (per-batch max-length padding), `tokenize_parallel()` (multi-core tokenization with serial fallback for small slices), `prepend_specials()` (adds `[CLS] [D]` / `[CLS] [Q]`), `punct_ids()` (punctuation filter list). |
-| `scripts/index_documents.py` | **Task 2 main script.** Loads `collection.tsv`, encodes every document through the BERT document encoder, applies the punctuation filter, saves the flat embedding array + offsets + doc IDs to `indexes/`. |
+| `scripts/index_documents.py` | **Task 2 main script.** Loads `collections.tsv`, encodes every document through the BERT document encoder, applies the punctuation filter, saves the flat embedding array + offsets + doc IDs to `indexes/`. |
 | `scripts/build_faiss_index.py` | Builds the FAISS `IndexIVFPQ` structure over the flat embeddings for end-to-end retrieval (§3.6). Uses `nlist=2000`, `m=16`, `nbits=8`, `nprobe=10` per the paper. |
 | `scripts/verify_index.py` | Post-run validator. Confirms embedding dim, offsets length, offsets endpoint, average tokens per doc, and that sample doc IDs exist in the collection. |
 | `scripts/query_index.py` | Retrieval smoke test. Supports `--mode re-rank` (§3.5, exhaustive MaxSim) and `--mode e2e` (§3.6, FAISS filter + MaxSim refine). |

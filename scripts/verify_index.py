@@ -4,7 +4,7 @@ Verifies that the index is well-formed:
   - len(offsets) == len(doc_ids) + 1
   - offsets[-1] == num tokens
   - avg tokens per doc in a plausible range
-  - each stored doc_id exists in collection.tsv
+  - each stored doc_id exists in collections.tsv
 """
 
 import os

@@ -53,7 +53,7 @@ def download_msmarco(data_dir=MSMARCO_DIR, include_train=False, limit=None):
         print(f"Subset requested: Ensuring {len(required_pids):,} relevant passages are kept.")
 
     # 3. Save Collection
-    _save_docs(MSMARCO_COLLECTION, os.path.join(data_dir, "collection.tsv"), required_pids, limit)
+    _save_docs(MSMARCO_COLLECTION, os.path.join(data_dir, "collections.tsv"), required_pids, limit)
 
     _print_summary(data_dir)
 
@@ -84,7 +84,7 @@ def download_trec_car(data_dir=TRECCAR_DIR, limit=None):
         print(f"Subset requested: Ensuring {len(required_pids):,} relevant passages are kept.")
 
     # 3. Save Collection
-    _save_docs(TRECCAR_COLLECTION, os.path.join(data_dir, "collection.tsv"), required_pids, limit)
+    _save_docs(TRECCAR_COLLECTION, os.path.join(data_dir, "collections.tsv"), required_pids, limit)
 
     _print_summary(data_dir)
 
@@ -190,8 +190,8 @@ def _print_summary(data_dir):
 # ======================================================================
 
 def load_collection(data_dir):
-    """Load passages as {pid: text} dict from collection.tsv."""
-    filepath = os.path.join(data_dir, "collection.tsv")
+    """Load passages as {pid: text} dict from collections.tsv."""
+    filepath = os.path.join(data_dir, "collections.tsv")
     collection = {}
     with open(filepath, "r", encoding="utf-8") as f:
         for line in tqdm(f, desc="Loading collection"):

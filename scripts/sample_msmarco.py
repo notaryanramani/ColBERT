@@ -71,7 +71,7 @@ def sample_dataset(collection_path, qrels_path, queries_path, output_dir, limit=
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Downsample MS MARCO by subsetting docs and filtering queries.")
-    parser.add_argument("--collection", default="data/msmarco/collection.tsv", help="Path to original collection TSV")
+    parser.add_argument("--collection", default="data/msmarco/collections.tsv", help="Path to original collection TSV")
     parser.add_argument("--qrels", default="data/msmarco/qrels.dev.tsv", help="Path to original dev qrels TSV")
     parser.add_argument("--queries", default="data/msmarco/queries.dev.tsv", help="Path to original dev queries TSV")
     parser.add_argument("--out_dir", default="data/msmarco_sample", help="Output directory for the new sample")
