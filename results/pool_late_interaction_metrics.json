@@ -1,0 +1,194 @@
+{
+  "msmarco": {
+    "split": "dev",
+    "documents": 1000000,
+    "queries": 6980,
+    "bm25_depth": 1000,
+    "full_depth": 1000,
+    "BM25": {
+      "MRR@10": 0.4334143471142047,
+      "Recall@50": 0.789720630372493,
+      "evaluated_queries": 6980
+    },
+    "configurations": {
+      "fixed_k8": {
+        "pooling": {
+          "name": "fixed_k8",
+          "kind": "fixed",
+          "k": 8
+        },
+        "total_pool_vectors": 7999984,
+        "avg_pools_per_document": 7.999984,
+        "storage_mb": 1953.12,
+        "full_corpus": {
+          "MRR@10": 0.5921162505116684,
+          "Recall@50": 0.9390520534861508,
+          "evaluated_queries": 6980
+        },
+        "bm25_rerank": {
+          "MRR@10": 0.5962379474234798,
+          "Recall@50": 0.9152578796561605,
+          "evaluated_queries": 6980
+        }
+      },
+      "fixed_k16": {
+        "pooling": {
+          "name": "fixed_k16",
+          "kind": "fixed",
+          "k": 16
+        },
+        "total_pool_vectors": 15998792,
+        "avg_pools_per_document": 15.998792,
+        "storage_mb": 3905.96,
+        "full_corpus": {
+          "MRR@10": 0.6086888274889729,
+          "Recall@50": 0.9484001910219674,
+          "evaluated_queries": 6980
+        },
+        "bm25_rerank": {
+          "MRR@10": 0.6086025264929293,
+          "Recall@50": 0.9198304680038204,
+          "evaluated_queries": 6980
+        }
+      },
+      "window_w8_s2": {
+        "pooling": {
+          "name": "window_w8_s2",
+          "kind": "window",
+          "window": 8,
+          "stride": 2
+        },
+        "total_pool_vectors": 34571268,
+        "avg_pools_per_document": 34.571268,
+        "storage_mb": 8440.25,
+        "full_corpus": {
+          "MRR@10": 0.6152269522899908,
+          "Recall@50": 0.9463228271251194,
+          "evaluated_queries": 6980
+        },
+        "bm25_rerank": {
+          "MRR@10": 0.6153053508891638,
+          "Recall@50": 0.9196275071633236,
+          "evaluated_queries": 6980
+        }
+      },
+      "window_w16_s4": {
+        "pooling": {
+          "name": "window_w16_s4",
+          "kind": "window",
+          "window": 16,
+          "stride": 4
+        },
+        "total_pool_vectors": 17535804,
+        "avg_pools_per_document": 17.535804,
+        "storage_mb": 4281.2,
+        "full_corpus": {
+          "MRR@10": 0.5829755651066564,
+          "Recall@50": 0.932951289398281,
+          "evaluated_queries": 6980
+        },
+        "bm25_rerank": {
+          "MRR@10": 0.5899750420703163,
+          "Recall@50": 0.9148638968481375,
+          "evaluated_queries": 6980
+        }
+      }
+    }
+  },
+  "trec-car": {
+    "split": "test",
+    "documents": 1000000,
+    "queries": 2125,
+    "bm25_depth": 1000,
+    "full_depth": 1000,
+    "BM25": {
+      "MRR@10": 0.40846554621848774,
+      "MAP": 0.2964152826106772,
+      "evaluated_queries": 2125
+    },
+    "configurations": {
+      "fixed_k8": {
+        "pooling": {
+          "name": "fixed_k8",
+          "kind": "fixed",
+          "k": 8
+        },
+        "total_pool_vectors": 7972863,
+        "avg_pools_per_document": 7.972863,
+        "storage_mb": 1946.5,
+        "full_corpus": {
+          "MRR@10": 0.5051878618113926,
+          "MAP": 0.3789571934782779,
+          "evaluated_queries": 2125
+        },
+        "bm25_rerank": {
+          "MRR@10": 0.5056020541549965,
+          "MAP": 0.38059758019663575,
+          "evaluated_queries": 2125
+        }
+      },
+      "fixed_k16": {
+        "pooling": {
+          "name": "fixed_k16",
+          "kind": "fixed",
+          "k": 16
+        },
+        "total_pool_vectors": 15597502,
+        "avg_pools_per_document": 15.597502,
+        "storage_mb": 3807.98,
+        "full_corpus": {
+          "MRR@10": 0.5014957983193284,
+          "MAP": 0.379875215076046,
+          "evaluated_queries": 2125
+        },
+        "bm25_rerank": {
+          "MRR@10": 0.5026054154995337,
+          "MAP": 0.38031778132335015,
+          "evaluated_queries": 2125
+        }
+      },
+      "window_w8_s2": {
+        "pooling": {
+          "name": "window_w8_s2",
+          "kind": "window",
+          "window": 8,
+          "stride": 2
+        },
+        "total_pool_vectors": 35487543,
+        "avg_pools_per_document": 35.487543,
+        "storage_mb": 8663.95,
+        "full_corpus": {
+          "MRR@10": 0.5592362278244639,
+          "MAP": 0.423271436299122,
+          "evaluated_queries": 2125
+        },
+        "bm25_rerank": {
+          "MRR@10": 0.5570024276377225,
+          "MAP": 0.4197348161620537,
+          "evaluated_queries": 2125
+        }
+      },
+      "window_w16_s4": {
+        "pooling": {
+          "name": "window_w16_s4",
+          "kind": "window",
+          "window": 16,
+          "stride": 4
+        },
+        "total_pool_vectors": 17993112,
+        "avg_pools_per_document": 17.993112,
+        "storage_mb": 4392.85,
+        "full_corpus": {
+          "MRR@10": 0.5528181139122321,
+          "MAP": 0.41287569499267807,
+          "evaluated_queries": 2125
+        },
+        "bm25_rerank": {
+          "MRR@10": 0.5521167133520084,
+          "MAP": 0.41233138043585715,
+          "evaluated_queries": 2125
+        }
+      }
+    }
+  }
+}

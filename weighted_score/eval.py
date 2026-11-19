@@ -272,7 +272,7 @@ def main():
 
     for dataset in DATASETS:
         metrics[dataset] = {}
-        for model_name in ("weighted",):
+        for model_name in ("base", "weighted"):
             print(f"\nEvaluating {model_name} on {dataset}")
             metrics[dataset][model_name] = evaluate_one(
                 dataset, model_name, args, tokenizer, device
